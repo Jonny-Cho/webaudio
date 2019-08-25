@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Audio Practice</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+</head>
+<body>
+
+	<h1>Audio Visualizer Sample</h1>
+    <div id=audio-uploader-wrapper>
+        <label class="btn" for="audio-uploader">Upload Your Audio</label>
+        <button id="play-button" class="btn">Play</button>
+        
+        <button id="stop-button" class="btn">Stop</button>
+        
+        <input id="audio-uploader" type="file">
+    </div>
+    
+    <div id=audio-info></div>
+    
+    <svg id="waveform" preserveAspectRatio="none">
+        <g id="waveform-path-group"></g>
+    </svg>
+</body>
+<script type="module" th:src="@{/js/index.js}"></script>
+</html>
