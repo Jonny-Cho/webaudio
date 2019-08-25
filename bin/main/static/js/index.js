@@ -25,4 +25,9 @@ import AudioAnalyzer from './AudioAnalyzer.js';
             reader.readAsArrayBuffer(file);
         }
     }
+    
+	document.getElementById('master-gain-controller').oninput = e => {
+		const gain = parseInt(e.target.value) / 100;
+		AudioAnalyzer.setGain(gain * 2);
+	};
 })();

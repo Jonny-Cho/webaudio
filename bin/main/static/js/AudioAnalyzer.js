@@ -16,6 +16,7 @@ class AudioAnalyzer {
     this.isPlaying = false;
     
     this.updateViewboxSize();
+   
   }
 
   setAudio (audioFile) {
@@ -25,12 +26,15 @@ class AudioAnalyzer {
       this.updateViewboxSize();
       this.parsePeaks();
       this.draw();
+      
+      this.sourceBuffer = this.audioContext.createBufferSource();
+      this.gainNode = this.audioContext.createGain();
+      this.audio = new Audio(this.audioContext);
     });
   }
   
   play () {
 	  if(!this.isPlaying){
-		  this.sourceBuffer = this.audioContext.createBufferSource();
 		  this.sourceBuffer.buffer = this.audioBuffer;
 		  this.sourceBuffer.connect(this.audioContext.destination);
 		  this.sourceBuffer.start();
@@ -132,6 +136,14 @@ class AudioAnalyzer {
     this.sampleRate = 0;
     this.peaks = [];
     this.updateViewboxSize();
+  }
+  
+  setGain(gain){
+	  console.log(gain);
+	  console.log(this.gainNode.gain);
+	  this.sourceBuffer.connect(this.gainNode);
+	  this.gainNode.connect(this.audioContext.destination);
+	  this.gainNode.gain.setValueAtTime(gain, this.audioContext.currentTime);
   }
 }
 
